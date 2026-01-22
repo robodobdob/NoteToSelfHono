@@ -1,6 +1,6 @@
 import {Note, Tag} from "../models";
-import {uploadFile} from "./Storage";
-import {deleteNote, filterNotes, getLatestNotes, getNote, getTags, saveNote, searchNotes} from "./Database";
+import {uploadFile} from "../infrastructure/Storage";
+import {deleteNote, filterNotes, getLatestNotes, getNote, getTags, saveNote, searchNotes} from "../infrastructure/Database";
 
 export async function getLatestNotesAsync(): Promise<Note[]> {
     return await getLatestNotes();

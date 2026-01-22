@@ -1,13 +1,11 @@
 import { Hono } from 'hono'
-import NoteList from './NoteList'
-import NoteDetails from './NoteDetails'
-import EditNote from './EditNote'
+import NoteList from './components/NoteList'
+import NoteDetails from './components/NoteDetails'
+import EditNote from './components/EditNote'
 import { Note, toNote } from '../../models'
-import RatingStar from './RatingStars'
-import ResetFilters from "./ResetFilters";
 import { deleteNoteAsync, saveNoteAsync } from '../../services/NotesService'
-import Reset from './Reset'
-import RatingSelector from './RatingSelector'
+import Reset from './components/Reset'
+import RatingSelector from './components/RatingSelector'
 
 const app = new Hono()
 

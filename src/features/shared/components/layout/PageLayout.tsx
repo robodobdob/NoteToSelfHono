@@ -1,6 +1,6 @@
-import Icon from "../shared/Icon";
-import UtilityModal from "../shared/UtilityModal";
-import Working from "../shared/Working";
+import Icon from "../Icon";
+import UtilityModal from "../UtilityModal";
+import Working from "../Working";
 import BodyLayout from "./BodyLayout";
 
 function PageLayout(props: any){

@@ -1,7 +1,7 @@
 import PageLayout from "../layout/PageLayout";
-import NoteList from "../notes/NoteList";
-import SearchBox from "../notes/SearchBox";
-import TagCloud from "../notes/TagCloud";
+import NoteList from "../../../notes/components/NoteList";
+import SearchBox from "../../../notes/components/SearchBox";
+import TagCloud from "../../../notes/components/TagCloud";
 
 function HomePage() {
     return (

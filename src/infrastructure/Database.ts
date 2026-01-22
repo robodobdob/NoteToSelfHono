@@ -1,6 +1,6 @@
 import * as sql from 'mssql';
 import { Note, Tag } from '../models';
-import { spacesToTags } from '../components/helpers';
+import { spacesToTags } from '../features/shared/helpers';
 
 const config: sql.config = {
     server: process.env.DB_SERVER!,

@@ -1,10 +1,10 @@
-import Icon from "../shared/Icon";
+import Icon from "../../shared/components/Icon";
 import RatingStars from "./RatingStars";
-import { Note } from "../../models";
+import { Note } from "../../../models";
 import SearchBox from "./SearchBox";
 import TagCloud from "./TagCloud";
-import { tagsToList } from "../helpers";
-import { searchTagsAsync, getLatestNotesAsync, searchNotesAsync } from "../../services/NotesService";
+import { tagsToList } from "../../shared/helpers";
+import { searchTagsAsync, getLatestNotesAsync, searchNotesAsync } from "../../../services/NotesService";
 
 interface NotelistProps {
     query?: string;
