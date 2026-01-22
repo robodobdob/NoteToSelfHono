@@ -1,0 +1,20 @@
+{
+  "name": "NoteToSelf",
+  "scripts": {
+    "dev": "bun run --hot src/index.tsx",
+    "build": "bun build src/index.tsx --outdir dist --target bun",
+    "build-app": "bun build src/index.tsx --target bun --compile --outfile app",
+    "start": "bun index.js"
+  },
+  "dependencies": {
+    "@azure/identity": "^4.13.0",
+    "@azure/storage-blob": "^12.29.1",
+    "hono": "^4.10.7",
+    "mssql": "^12.2.0",
+    "uuid": "^13.0.0"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/mssql": "^9.1.8"
+  }
+}

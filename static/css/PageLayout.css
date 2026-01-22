@@ -1,0 +1,51 @@
+.page {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+.content {
+    padding-top: 1.1rem;
+}
+
+article.content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+
+    @media (max-width: 700px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.top-row {
+    background-color: #0d6efd;
+    color: #ffffff;
+
+    justify-content: space-between;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+
+    a, .btn-link {
+        white-space: nowrap;
+        margin-left: 1.5rem;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+
+        &:first-child {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+}
