@@ -1,8 +1,6 @@
 import RatingStars from "./RatingStars";
 import { getNoteByIdAsync } from "../../../services/NotesService";
 
-const GUID_EMPTY = '00000000-0000-0000-0000-000000000000'
-
 type NoteDetailsProps = {
     id: string | null;
 }

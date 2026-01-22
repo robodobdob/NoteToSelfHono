@@ -1,4 +1,3 @@
-import RatingStars from "./RatingStars";
 import { Note } from "../../../models";
 import { tagsToSpaces } from "../../shared/helpers";
 import { v4 as uuidv4 } from 'uuid';

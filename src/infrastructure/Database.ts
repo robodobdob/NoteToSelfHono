@@ -150,7 +150,7 @@ export async function deleteNote(id: string): Promise<boolean> {
         await sql.connect(config)
         const request = new sql.Request()
         request.input('Id', sql.UniqueIdentifier, id)
-        const result = await request.query(`
+        await request.query(`
             DELETE FROM dbo.Notes WHERE Id = @Id
         `);
         return true;
