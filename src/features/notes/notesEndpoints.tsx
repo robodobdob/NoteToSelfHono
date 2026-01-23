@@ -24,12 +24,6 @@ app.get('/notedetails/:id', async (c) => {
   )
 })
 
-app.get('/editnote', (c) => {
-  return c.html(
-    <EditNote noteId={null}  />
-  )
-})
-
 app.get('/editnote/:id', async (c) => {
   const { id } = c.req.param()
   return c.html(

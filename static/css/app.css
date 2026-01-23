@@ -144,3 +144,9 @@ dialog {
     max-width: 220px;
     text-align: center;
 }
+
+.note-list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

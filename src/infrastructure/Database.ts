@@ -22,7 +22,7 @@ export async function getLatestNotes(): Promise<Note[]> {
         await sql.connect(config);
         const request = new sql.Request();
         const result = await request.query(`
-            SELECT TOP 10 * FROM dbo.Notes ORDER BY CreatedAt DESC
+            SELECT TOP 12 * FROM dbo.Notes ORDER BY CreatedAt DESC
         `);
         return result.recordset;
     } catch (err) {
@@ -127,7 +127,7 @@ export async function saveNote(note: Note): Promise<string> {
                     Rating = @Rating,
                     StorageUrl = @StorageUrl,
                     FileName = @FileName,
-                    CreatedAt = GETDATE()
+                    CreatedAt = GETUTCDATE()
                 OUTPUT inserted.Id
                 WHERE Id = @Id;
             END
@@ -135,7 +135,7 @@ export async function saveNote(note: Note): Promise<string> {
             BEGIN
                 INSERT INTO Notes (Id, Title, Description, Tags, Rating, StorageUrl, FileName, CreatedAt)
                 OUTPUT inserted.Id
-                VALUES (@Id, @Title, @Description, @Tags, @Rating, @StorageUrl, @FileName, GETDATE());
+                VALUES (@Id, @Title, @Description, @Tags, @Rating, @StorageUrl, @FileName, GETUTCDATE());
             END
         `);
         return result.recordset[0].Id;

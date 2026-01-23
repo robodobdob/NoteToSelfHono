@@ -8,6 +8,8 @@ interface EditNoteProps {
     noteId: string | null;
 }
 
+const GUID_EMPTY = "00000000-0000-0000-0000-000000000000";
+
 async function EditNote(props: EditNoteProps)  {
     const { noteId } = props
     let note: Note | null = {
@@ -19,7 +21,7 @@ async function EditNote(props: EditNoteProps)  {
         StorageUrl: "",
         FileName: ""
     }
-    if (noteId){
+    if (noteId != GUID_EMPTY){
         note = await getNoteByIdAsync(noteId!)
     }
     
