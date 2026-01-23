@@ -8,17 +8,17 @@ function PageLayout(props: any){
         <BodyLayout>
             <div class="page">
                 <main>
-                    <div class="top-row px-4 d-flex justify-content-between">
+                    <div class="top-row px-3 d-flex justify-content-between">
                         <h3 class="mt-1 mb-1">Note to self...</h3>
                         <span class="d-flex align-items-center gap-2">
                             <Working Id="mainLayout_spinner"/>
                             <button type="button" class="btn btn-light p-1" command="show-modal" commandfor="utilityModal" hx-get="/editnote/00000000-0000-0000-0000-000000000000" hx-target="#utilityModal_content">
                                 <Icon name="plus" />
                             </button>
-                        </span>                
+                        </span>
                     </div>
 
-                    <article class="content px-4">
+                    <article class="content px-3 columns">
                         {props.children}
                     </article>
                 </main>

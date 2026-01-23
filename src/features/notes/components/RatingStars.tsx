@@ -1,14 +1,16 @@
 interface RatingStarProps {
-    Rating: number;
+    rating: number;
+    size?: string;
 }
 
 function RatingStar(props: RatingStarProps) {
+    const { rating, size = 'star-md' } = props;
     return (
-        <>
-        {[1,2,3,4,5].map(i =>  
-            <span class={i <= props.Rating ? "rating-star text-warning" : "rating-star text-secondary"}>*</span>
-        )}
-        </>        
+        <div className="rating-stars">
+            {[1, 2, 3, 4, 5].map(i =>
+                <span class={`star ${size} ${i <= rating ? `text-warning` : `text-secondary`}`}>*</span>
+            )}
+        </div>
     )
 }
 

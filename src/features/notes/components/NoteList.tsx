@@ -43,8 +43,8 @@ async function NoteList(props: NotelistProps) {
 
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <div class="fw-bold text-uppercase">{getHeaderText(query, tags)}</div>
-                <button class="btn btn-sm btn-link" hx-get="/reset?search=true&tags=true&list=true" hx-indicator="#mainLayout_spinner">
-                    <Icon name={query ? 'delete' : 'refresh-ccw'} filled={false} size={24} />
+                <button class="btn btn-sm btn-link p-0" hx-get="/reset?search=true&tags=true&list=true" hx-indicator="#mainLayout_spinner">
+                    <Icon name={(query || tags) ? 'delete' : 'rotate-cw'} filled={false} size={16} />
                 </button>
             </div>
 
@@ -53,7 +53,7 @@ async function NoteList(props: NotelistProps) {
                 <button type="button" command="show-modal" commandfor="utilityModal" hx-get={`/notedetails/${note.Id}`} hx-target="#utilityModal_content" className="list-group-item list-group-item-action d-flex align-items-center justify-content-between">
                     <span class="text-start">{note.Title}</span>
                     <span class="text-end text-nowrap ms-1">
-                        <RatingStars Rating={note.Rating}/>
+                        <RatingStars rating={note.Rating}/>
                     </span>
                 </button>
             )}

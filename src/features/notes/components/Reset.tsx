@@ -24,7 +24,7 @@ function Reset(props: ResetProps){
                 </hx-partial>
             }
             {list && 
-                <hx-partial hx-target="#notes-list" hx-swap="outerHTML">
+                <hx-partial hx-target="#notes-list">
                     <NoteList/>
                 </hx-partial>
             }

@@ -57,7 +57,7 @@ app.delete('/deletenote/:id', async (c) => {
 app.get('/ratingselector/:rating', (c) => {
   const rating: number = Number(c.req.param('rating'))
   return c.html(
-      <RatingSelector Rating={rating}/>
+      <RatingSelector rating={rating}/>
   )
 })
 

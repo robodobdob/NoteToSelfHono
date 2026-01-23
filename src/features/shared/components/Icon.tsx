@@ -10,6 +10,7 @@ function Icon(props: IconProps) {
         <svg
             width={size}
             height={size}
+            viewBox="0 0 24 24"
             fill={filled ? "currentColor" : "none"}
             stroke="currentColor"
             stroke-width="2"
