@@ -1,10 +1,8 @@
-import { DefaultAzureCredential } from '@azure/identity';
+//import { DefaultAzureCredential, AzureCliCredential } from '@azure/identity';
 import { BlobServiceClient } from '@azure/storage-blob';
 
-const storageUrl = process.env.AZURE_STORAGE_URL!;
-
-const blobServiceClient = new BlobServiceClient(storageUrl, new DefaultAzureCredential());
-
+const connectionString = process.env.AZURE_STORAGE_CONNECTION_STRING!;
+const blobServiceClient = BlobServiceClient.fromConnectionString(connectionString);
 const containerClient = blobServiceClient.getContainerClient('notes');
 
 export async function uploadFile(fileContent: Blob, noteId: string, fileName: string): Promise<string> {

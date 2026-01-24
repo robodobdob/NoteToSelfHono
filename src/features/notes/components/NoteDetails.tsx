@@ -1,5 +1,5 @@
 import RatingStars from "./RatingStars";
-import { getNoteByIdAsync } from "../../../services/NotesService";
+import { getNoteByIdAsync } from "../NotesService";
 
 type NoteDetailsProps = {
     id: string | null;

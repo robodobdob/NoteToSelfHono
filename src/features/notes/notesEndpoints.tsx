@@ -3,7 +3,7 @@ import NoteList from './components/NoteList'
 import NoteDetails from './components/NoteDetails'
 import EditNote from './components/EditNote'
 import { Note, toNote } from '../../models'
-import { deleteNoteAsync, saveNoteAsync } from '../../services/NotesService'
+import { deleteNoteAsync, saveNoteAsync } from './NotesService'
 import Reset from './components/Reset'
 import RatingSelector from './components/RatingSelector'
 
@@ -34,7 +34,7 @@ app.get('/editnote/:id', async (c) => {
 app.post('/editnote/:id', async (c) => {
   const body = await c.req.parseBody()
   const note: Note = toNote(body);
-  await saveNoteAsync(note, body["File"] as Blob);
+  await saveNoteAsync(note, note.File as Blob);
   c.res.headers.append('HX-Trigger', 'notes-updated, close-modal');
   c.status(200);
   return c.text('');

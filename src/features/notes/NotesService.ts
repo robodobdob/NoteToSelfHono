@@ -1,6 +1,6 @@
-import {Note, Tag} from "../models";
-import {uploadFile} from "../infrastructure/Storage";
-import {deleteNote, filterNotes, getLatestNotes, getNote, getTags, saveNote, searchNotes} from "../infrastructure/Database";
+import {Note, Tag} from "../../models";
+import {uploadFile} from "../../infrastructure/Storage";
+import {deleteNote, filterNotes, getLatestNotes, getNote, getTags, saveNote, searchNotes} from "../../infrastructure/Database";
 
 export async function getLatestNotesAsync(): Promise<Note[]> {
     return await getLatestNotes();
@@ -22,9 +22,9 @@ export async function searchTagsAsync(tags: string[]): Promise<Note[]> {
     return await filterNotes(tags);
 }
 
-export async function saveNoteAsync(note: Note, file?: Blob): Promise<string> {
+export async function saveNoteAsync(note: Note, file: Blob): Promise<string> {
     // Upload file to Azure storage if provided
-    if (file) {
+    if (note.File) {
         note.StorageUrl = await uploadFile(file, note.Id, note.FileName!);
     }
 

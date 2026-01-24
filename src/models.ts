@@ -1,5 +1,3 @@
-import { BlobOrStringOrBuffer } from "bun"
-
 interface Note {
     Id: string
     Title: string
@@ -8,7 +6,7 @@ interface Note {
     Rating: number
     StorageUrl?: string
     FileName?: string
-    File?: BlobOrStringOrBuffer
+    File?: Blob
 }
 
 interface Tag {
@@ -24,7 +22,7 @@ function toNote(body: any): Note {
     Tags: String(body.Tags),
     Rating: Number(body.Rating),
     StorageUrl: String(body.StorageUrl) ?? null,
-    FileName: String(body.FileName) ?? null,
+    FileName: String(body.File.name) ?? null,
     File: body.File ?? null
   }
 }
