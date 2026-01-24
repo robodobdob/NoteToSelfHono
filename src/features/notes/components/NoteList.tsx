@@ -50,7 +50,7 @@ async function NoteList(props: NotelistProps) {
 
             <div class="list-group" hx-target:inherited="#utilityModal_content">
             {notes.map(note =>
-                <button type="button" command="show-modal" commandfor="utilityModal" hx-get={`/notedetails/${note.Id}`} className="list-group-item list-group-item-action note-list-item">
+                <button type="button" command="show-modal" commandfor="utilityModal" hx-get={`/notedetails/${note.Id}`} class="list-group-item list-group-item-action note-list-item">
                     <span class="text-start">{note.Title}</span>
                     <span class="text-end text-nowrap ms-1 fs-6">
                         <RatingStars rating={note.Rating}/>

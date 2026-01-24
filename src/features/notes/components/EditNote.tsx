@@ -29,41 +29,41 @@ async function EditNote(props: EditNoteProps)  {
         <article class="columns">
             <section>
                 <div class="p-3 shadow text-center note-image-wrapper">
-                    <img className="" src={note?.StorageUrl?.trim() ? note.StorageUrl : '/static/img/missing.jpg'} alt={note?.Title}/>
+                    <img class="" src={note?.StorageUrl?.trim() ? note.StorageUrl : '/static/img/missing.jpg'} alt={note?.Title}/>
                 </div>
             </section>
             <section>
                 <form id="editNote" hx-post={`/editnote/${note?.Id}`} hx-encoding='multipart/form-data'
                       hx-indicator="#indicator">
                     <input type="hidden" name="Id" value={note?.Id}/>
-                    <div className="mb-3">
-                        <label htmlFor="title" className="form-label">Title</label>
-                        <input type="text" className="form-control" id="title" name="Title" value={note?.Title} required
+                    <div class="mb-3">
+                        <label htmlFor="title" class="form-label">Title</label>
+                        <input type="text" class="form-control" id="title" name="Title" value={note?.Title} required
                                maxLength={200}/>
                     </div>
-                    <div className="mb-3">
-                        <label htmlFor="rating" className="form-label">Rating</label>
+                    <div class="mb-3">
+                        <label htmlFor="rating" class="form-label">Rating</label>
                         <RatingSelector rating={note?.Rating!}/>
                     </div>
-                    <div className="mb-3">
-                        <label htmlFor="description" className="form-label">Description</label>
-                        <textarea className="form-control" id="description" rows={3} maxLength={2000}
+                    <div class="mb-3">
+                        <label htmlFor="description" class="form-label">Description</label>
+                        <textarea class="form-control" id="description" rows={3} maxLength={2000}
                                   name="Description">{note?.Description}</textarea>
                     </div>
-                    <div className="mb-3">
-                        <label htmlFor="file" className="form-label">Attach File</label>
-                        <input type="file" className="form-control w-100" id="file" name="File"
+                    <div class="mb-3">
+                        <label htmlFor="file" class="form-label">Attach File</label>
+                        <input type="file" class="form-control w-100" id="file" name="File"
                                accept=".jpg,.jpeg,.png,.webp" value={note?.FileName}/>
                     </div>
-                    <div className="mb-3">
-                        <label htmlFor="tags" className="form-label">Tags</label>
-                        <input type="text" className="form-control" id="tags" name="Tags" maxLength={200}
+                    <div class="mb-3">
+                        <label htmlFor="tags" class="form-label">Tags</label>
+                        <input type="text" class="form-control" id="tags" name="Tags" maxLength={200}
                                value={tagsToSpaces(note?.Tags!)} autoComplete="on" required/>
                     </div>
                 </form>
-                <div className="d-flex justify-content-evenly gap-1 w-100">
-                    <button type="submit" form="editNote" className="btn btn-primary w-25">Save</button>
-                    <button type="button" className="btn btn-secondary w-25" hx-get={`/notedetails/${note?.Id}`}
+                <div class="d-flex justify-content-evenly gap-1 w-100">
+                    <button type="submit" form="editNote" class="btn btn-primary w-25">Save</button>
+                    <button type="button" class="btn btn-secondary w-25" hx-get={`/notedetails/${note?.Id}`}
                             hx-confirm="Are you sure you wish to cancel?">Cancel
                     </button>
                 </div>
