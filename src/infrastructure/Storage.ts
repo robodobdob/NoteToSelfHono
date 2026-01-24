@@ -1,12 +1,9 @@
 import { DefaultAzureCredential } from '@azure/identity';
 import { BlobServiceClient } from '@azure/storage-blob';
 
-const accountName = process.env.AZURE_ACCOUNT_NAME!;
+const storageUrl = process.env.AZURE_STORAGE_URL!;
 
-const blobServiceClient = new BlobServiceClient(
-    `https://${accountName}.blob.core.windows.net`,
-    new DefaultAzureCredential()
-);
+const blobServiceClient = new BlobServiceClient(storageUrl, new DefaultAzureCredential());
 
 const containerClient = blobServiceClient.getContainerClient('notes');
 
