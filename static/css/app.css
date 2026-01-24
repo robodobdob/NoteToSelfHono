@@ -106,23 +106,6 @@ dialog {
     }
 }
 
-.rating-stars {
-    .star {
-        font-weight: bold;
-        line-height: 1rem;
-        vertical-align: bottom;
-        font-size: 1rem;
-
-        &.star-md {
-            font-size: 2rem;
-        }
-
-        &.star-lg {
-            font-size: 3rem;
-        }
-    }
-}
-
 .pointer {
     cursor: pointer;
 }

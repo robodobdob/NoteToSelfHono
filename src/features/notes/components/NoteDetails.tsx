@@ -24,8 +24,8 @@ async function NoteDetails(props: NoteDetailsProps) {
                     <h3>
                         {note?.Title}
                     </h3>
-                    <div class="d-flex justify-content-evenly my-3">
-                        <RatingStars rating={note!.Rating} size="star-lg"/>
+                    <div class="d-flex justify-content-evenly my-3 fs-3">
+                        <RatingStars rating={note!.Rating}/>
                     </div>
                     <blockquote className="my-3">
                         {note!.Description}
