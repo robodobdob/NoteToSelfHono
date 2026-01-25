@@ -31,7 +31,7 @@ main {
 }
 
 .top-row {
-    background-color: var(--bs-primary);
+    background-color: orange;
     color: var(--bs-body-bg);
 
     justify-content: space-between;
