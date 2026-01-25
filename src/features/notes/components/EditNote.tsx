@@ -28,17 +28,17 @@ async function EditNote(props: EditNoteProps)  {
     return (
         <article class="columns">
             <section>
-                <div class="p-3 shadow text-center note-image-wrapper">
+                <div class="p-3 shadow-sm text-center note-image-wrapper">
                     <img class="" src={note?.StorageUrl?.trim() ? note.StorageUrl : '/static/img/missing.jpg'} alt={note?.Title}/>
                 </div>
             </section>
-            <section>
+            <section class="d-flex flex-column justify-content-between">
                 <form id="editNote" hx-post={`/editnote/${note?.Id}`} hx-encoding='multipart/form-data'
                       hx-indicator="#indicator">
                     <input type="hidden" name="Id" value={note?.Id}/>
                     <div class="mb-3">
                         <label htmlFor="title" class="form-label">Title</label>
-                        <input type="text" class="form-control" id="title" name="Title" value={note?.Title} required
+                        <input type="text" class="form-control shadow-sm" id="title" name="Title" value={note?.Title} required
                                maxLength={200}/>
                     </div>
                     <div class="mb-3">
@@ -47,23 +47,23 @@ async function EditNote(props: EditNoteProps)  {
                     </div>
                     <div class="mb-3">
                         <label htmlFor="description" class="form-label">Description</label>
-                        <textarea class="form-control" id="description" rows={3} maxLength={2000}
+                        <textarea class="form-control shadow-sm" id="description" rows={3} maxLength={2000}
                                   name="Description">{note?.Description}</textarea>
                     </div>
                     <div class="mb-3">
                         <label htmlFor="file" class="form-label">Attach File</label>
-                        <input type="file" class="form-control w-100" id="file" name="File"
+                        <input type="file" class="form-control shadow-sm w-100" id="file" name="File"
                                accept=".jpg,.jpeg,.png,.webp" value={note?.FileName}/>
                     </div>
                     <div class="mb-3">
                         <label htmlFor="tags" class="form-label">Tags</label>
-                        <input type="text" class="form-control" id="tags" name="Tags" maxLength={200}
+                        <input type="text" class="form-control shadow-sm" id="tags" name="Tags" maxLength={200}
                                value={tagsToSpaces(note?.Tags!)} autoComplete="on" required/>
                     </div>
                 </form>
                 <div class="d-flex justify-content-evenly gap-1 w-100">
-                    <button type="submit" form="editNote" class="btn btn-primary w-25">Save</button>
-                    <button type="button" class="btn btn-secondary w-25" hx-get={`/notedetails/${note?.Id}`}
+                    <button type="submit" form="editNote" class="btn btn-primary shadow-sm w-25">Save</button>
+                    <button type="button" class="btn btn-secondary shadow-sm w-25" hx-get={`/notedetails/${note?.Id}`}
                             hx-confirm="Are you sure you wish to cancel?">Cancel
                     </button>
                 </div>
