@@ -4,7 +4,7 @@ import { Note } from "../../../models";
 import SearchBox from "./SearchBox";
 import TagCloud from "./TagCloud";
 import { tagsToList } from "../../shared/helpers";
-import { searchTagsAsync, getLatestNotesAsync, searchNotesAsync } from "../NotesService";
+import { searchTagsAsync, getLatestNotesAsync, searchNotesAsync } from "../notesService";
 
 interface NotelistProps {
     query?: string;

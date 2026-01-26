@@ -3,7 +3,7 @@ import NoteList from './components/NoteList'
 import NoteDetails from './components/NoteDetails'
 import EditNote from './components/EditNote'
 import { Note, toNote } from '../../models'
-import { deleteNoteAsync, saveNoteAsync } from './NotesService'
+import { deleteNoteAsync, saveNoteAsync } from './notesService'
 import Reset from './components/Reset'
 import RatingSelector from './components/RatingSelector'
 
