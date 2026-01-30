@@ -7,6 +7,9 @@ interface Note {
     StorageUrl?: string
     FileName?: string
     File?: Blob
+    FileContentType?: string
+    SearchText?: string
+    CreatedAt?: Date
 }
 
 interface Tag {

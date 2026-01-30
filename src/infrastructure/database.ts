@@ -115,8 +115,10 @@ export async function saveNote(note: Note): Promise<string> {
         request.input("Description", sql.NVarChar(sql.MAX), note.Description);
         request.input("Tags", sql.NVarChar(200), spacesToTags(note.Tags));
         request.input("Rating", sql.Int, note.Rating);
-        request.input("StorageUrl", sql.NVarChar(500), note.StorageUrl ?? null);
+        request.input("StorageUrl", sql.NVarChar(200), note.StorageUrl ?? null);
         request.input("FileName", sql.NVarChar(200), note.FileName ?? null);
+        request.input("FileContentType", sql.NVarChar(50), note.FileContentType ?? null);
+        request.input("SearchText", sql.NVarChar(1000), note.FileContentType ?? null);
         const result = await request.query<{ Id: string }>(`
             IF EXISTS (SELECT 1 FROM dbo.Notes WHERE Id = @Id)
             BEGIN
