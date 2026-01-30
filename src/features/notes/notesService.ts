@@ -43,6 +43,8 @@ export async function saveNoteAsync(note: Note, file: Blob | null | undefined): 
         }
     } else {
         // If file blob is null, check if note already has file details and retain them
+        note.StorageUrl = '';
+        note.FileName = '';
         const existingNote = await getNote(note.Id);
         if (existingNote?.StorageUrl && existingNote?.FileName) {
             note.StorageUrl = existingNote.StorageUrl;

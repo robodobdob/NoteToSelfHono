@@ -1,18 +1,18 @@
-interface Note {
+type Note = {
     Id: string
     Title: string
     Description: string
     Tags: string
     Rating: number
-    StorageUrl?: string
-    FileName?: string
+    StorageUrl: string | null
+    FileName: string | null
     File?: Blob
     FileContentType?: string
     SearchText?: string
-    CreatedAt?: Date
+    CreatedAt?: Date | null
 }
 
-interface Tag {
+type Tag = {
     Name: string;
     Count: number;
 }
