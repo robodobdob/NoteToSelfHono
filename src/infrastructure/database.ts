@@ -1,6 +1,5 @@
 import * as sql from 'mssql';
 import { Note, Tag } from '../models';
-import { spacesToTags } from '../features/shared/helpers';
 
 const config: sql.config = {
     server: process.env.DB_SERVER!,
@@ -113,32 +112,32 @@ export async function saveNote(note: Note): Promise<string> {
         request.input("Id", sql.UniqueIdentifier, note.Id);
         request.input("Title", sql.NVarChar(200), note.Title);
         request.input("Description", sql.NVarChar(sql.MAX), note.Description);
-        request.input("Tags", sql.NVarChar(200), spacesToTags(note.Tags));
+        request.input("Tags", sql.NVarChar(200), note.Tags);
         request.input("Rating", sql.Int, note.Rating);
         request.input("StorageUrl", sql.NVarChar(200), note.StorageUrl ?? null);
         request.input("FileName", sql.NVarChar(200), note.FileName ?? null);
         request.input("FileContentType", sql.NVarChar(50), note.FileContentType ?? null);
         request.input("SearchText", sql.NVarChar(1000), note.FileContentType ?? null);
         const result = await request.query<{ Id: string }>(`
-            IF EXISTS (SELECT 1 FROM dbo.Notes WHERE Id = @Id)
-            BEGIN
-                UPDATE Notes
-                SET Title = @Title,
-                    Description = @Description,
-                    Tags = @Tags,
-                    Rating = @Rating,
-                    StorageUrl = @StorageUrl,
-                    FileName = @FileName,
-                    CreatedAt = GETUTCDATE()
-                OUTPUT inserted.Id
-                WHERE Id = @Id;
-            END
-            ELSE
-            BEGIN
-                INSERT INTO Notes (Id, Title, Description, Tags, Rating, StorageUrl, FileName, CreatedAt)
-                OUTPUT inserted.Id
-                VALUES (@Id, @Title, @Description, @Tags, @Rating, @StorageUrl, @FileName, GETUTCDATE());
-            END
+            MERGE dbo.Notes AS Target
+            USING (VALUES (@Id, @Title, @Description, @Tags, @Rating, @StorageUrl, @FileName, @FileContentType, @SearchText))
+                AS Source (Id, Title, Description, Tags, Rating, StorageUrl, FileName, FileContentType, SearchText)
+            ON Target.Id = Source.Id
+            WHEN MATCHED THEN
+                UPDATE SET
+                Title = Source.Title,
+                Description = Source.Description,
+                Tags = Source.Tags,
+                Rating = Source.Rating,
+                StorageUrl = Source.StorageUrl,
+                FileName = Source.FileName,
+                FileContentType = Source.FileContentType,
+                SearchText = Source.SearchText,
+                CreatedAt = GETUTCDATE()
+            WHEN NOT MATCHED BY TARGET THEN
+                INSERT (Id, Title, Description, Tags, Rating, StorageUrl, FileName, FileContentType, SearchText, CreatedAt)
+                VALUES (NEWID(), Source.Title, Source.Description, Source.Tags, Source.Rating, Source.StorageUrl, Source.FileName, Source.FileContentType, Source.SearchText, GETUTCDATE())
+            OUTPUT inserted.Id;
         `);
         return result.recordset[0].Id;
     } catch (err) {

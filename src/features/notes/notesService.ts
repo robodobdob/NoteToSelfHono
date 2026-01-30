@@ -1,6 +1,7 @@
 import {Note, Tag} from "../../models";
 import {uploadFile} from "../../infrastructure/storage";
 import {deleteNote, filterNotes, getLatestNotes, getNote, getTags, saveNote, searchNotes} from "../../infrastructure/database";
+import {spacesToTags} from "../shared/helpers";
 
 const SEARCH_TEXT_MAX_LENGTH: number = 450;
 
@@ -25,8 +26,9 @@ export async function searchTagsAsync(tags: string[]): Promise<Note[]> {
 }
 
 export async function saveNoteAsync(note: Note, file: Blob | null | undefined): Promise<string> {
-    note.Tags = generateSearchText(note);
+    note.SearchText = generateSearchText(note);
     note.CreatedAt = new Date();
+    note.Tags = spacesToTags(note.Tags ?? '')
 
     // Upload file to Azure storage if provided
     if (file!.size > 0) {
