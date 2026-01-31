@@ -3,7 +3,7 @@ import NoteList from './components/NoteList'
 import NoteDetails from './components/NoteDetails'
 import EditNote from './components/EditNote'
 import { Note, toNote } from '../../models'
-import { deleteNoteAsync, saveNoteAsync } from './notesService'
+import { removeNoteAsync, saveNoteAsync } from './notesService'
 import Reset from './components/Reset'
 import RatingSelector from './components/RatingSelector'
 
@@ -42,7 +42,7 @@ app.post('/editnote/:id', async (c) => {
 
 app.delete('/deletenote/:id', async (c) => {
   const { id } = c.req.param()
-  await deleteNoteAsync(id)
+  await removeNoteAsync(id)
   c.res.headers.append('HX-Trigger', 'notes-updated, close-modal');
   c.status(200);
   return c.text('');

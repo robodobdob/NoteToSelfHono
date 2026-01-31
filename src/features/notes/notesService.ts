@@ -1,5 +1,5 @@
 import {Note, Tag} from "../../models";
-import {uploadFile} from "../../infrastructure/storage";
+import {deleteFile, uploadFile} from "../../infrastructure/storage";
 import {deleteNote, filterNotes, getLatestNotes, getNote, getTags, saveNote, searchNotes} from "../../infrastructure/database";
 import {spacesToTags} from "../shared/helpers";
 
@@ -43,8 +43,8 @@ export async function saveNoteAsync(note: Note, file: Blob | null | undefined): 
         }
     } else {
         // If file blob is null, check if note already has file details and retain them
-        note.StorageUrl = '';
-        note.FileName = '';
+        note.StorageUrl = null;
+        note.FileName = null;
         const existingNote = await getNote(note.Id);
         if (existingNote?.StorageUrl && existingNote?.FileName) {
             note.StorageUrl = existingNote.StorageUrl;
@@ -56,7 +56,11 @@ export async function saveNoteAsync(note: Note, file: Blob | null | undefined): 
     return await saveNote(note);
 }
 
-export async function deleteNoteAsync(id: string): Promise<boolean> {
+export async function removeNoteAsync(id: string): Promise<boolean> {
+    const existingNote = await getNote(id);
+    if (existingNote?.StorageUrl && existingNote?.FileName) {
+        await deleteFile(id, existingNote.FileName);
+    }
     return deleteNote(id);
 }
 
