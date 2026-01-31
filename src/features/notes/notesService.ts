@@ -2,6 +2,7 @@ import {Note, Tag} from "../../models";
 import {deleteFile, uploadFile} from "../../infrastructure/storage";
 import {deleteNote, filterNotes, getLatestNotes, getNote, getTags, saveNote, searchNotes} from "../../infrastructure/database";
 import {spacesToTags} from "../shared/helpers";
+import sharp from "sharp";
 
 const SEARCH_TEXT_MAX_LENGTH: number = 450;
 
@@ -35,7 +36,8 @@ export async function saveNoteAsync(note: Note, file: Blob | null | undefined): 
         // Upload the file blob and save file details to the note
         // Try to get filename from File object, then note.FileName, otherwise use default
         const fileName = (file instanceof File && file.name) || note.FileName || 'file';
-        note.StorageUrl = await uploadFile(file!, note.Id, fileName);
+        const resized = await resizeImage(file!);
+        note.StorageUrl = await uploadFile(resized, note.Id, fileName);
         note.FileName = fileName;
         // Set FileContentType if available from the file blob
         if (file!.type) {
@@ -92,4 +94,11 @@ function generateSearchText(dto: Note): string {
     }
 
     return searchText;
+}
+
+async function resizeImage(file: Blob): Promise<Buffer> {
+    const bytes = Buffer.from(await file.bytes());
+    return sharp(bytes)
+        .resize({ width: 600, height: 600, fit: "inside"})
+        .toBuffer();
 }

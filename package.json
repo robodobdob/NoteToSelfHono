@@ -1,5 +1,5 @@
 {
-  "name": "NoteToSelf",
+  "name": "notetoselfhono",
   "scripts": {
     "dev": "bun run --hot src/index.tsx",
     "build": "bun build src/index.tsx --outdir dist --target bun",
@@ -9,8 +9,9 @@
   "dependencies": {
     "@azure/identity": "^4.13.0",
     "@azure/storage-blob": "^12.29.1",
-    "hono": "^4.10.7",
+    "hono": "4.11.7",
     "mssql": "^12.2.0",
+    "sharp": "^0.34.5",
     "uuid": "^13.0.0"
   },
   "devDependencies": {
