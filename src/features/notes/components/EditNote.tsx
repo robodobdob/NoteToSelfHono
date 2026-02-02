@@ -53,7 +53,7 @@ async function EditNote(props: EditNoteProps)  {
                     <div class="mb-3">
                         <label htmlFor="file" class="form-label">Attach File</label>
                         <input type="file" class="form-control shadow-sm w-100" id="file" name="File"
-                               accept=".jpg,.jpeg,.png,.webp" value={note?.FileName}/>
+                               accept=".jpg,.jpeg,.png,.webp" />
                     </div>
                     <div class="mb-3">
                         <label htmlFor="tags" class="form-label">Tags</label>
