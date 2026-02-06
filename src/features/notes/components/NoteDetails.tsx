@@ -1,4 +1,3 @@
-import RatingStars from "./RatingStars";
 import { getNoteByIdAsync } from "../notesService";
 
 type NoteDetailsProps = {

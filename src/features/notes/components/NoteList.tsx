@@ -1,5 +1,4 @@
 import Icon from "../../shared/components/Icon";
-import RatingStars from "./RatingStars";
 import { Note } from "../../../models";
 import SearchBox from "./SearchBox";
 import TagCloud from "./TagCloud";
