@@ -26,9 +26,6 @@ function PageLayout(props: any){
                 <UtilityModal/>
 
             </div>
-            <form method="post" action="/auth/logout" class="d-flex w-100 my-3 justify-content-center">
-                <button type="submit" class="btn btn-warning">Logout</button>
-            </form>
         </BodyLayout>
     )
 }
