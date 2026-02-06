@@ -21,7 +21,9 @@ export async function getLatestNotes(): Promise<Note[]> {
         await sql.connect(config);
         const request = new sql.Request();
         const result = await request.query(`
-            SELECT TOP 12 * FROM dbo.Notes ORDER BY CreatedAt DESC
+            SELECT TOP 12 * 
+            FROM dbo.Notes 
+            ORDER BY CreatedAt DESC
         `);
         return result.recordset;
     } catch (err) {
@@ -37,7 +39,9 @@ export async function getNote(id: string): Promise<Note | null> {
         const request = new sql.Request();
         request.input('Id', sql.VarChar, id);
         const result = await request.query(`
-            SELECT * FROM dbo.Notes WHERE Id = @Id
+            SELECT * 
+            FROM dbo.Notes 
+            WHERE Id = @Id
         `);
         return result.recordset[0];
     } catch (err) {
@@ -71,7 +75,10 @@ export async function searchNotes(query: string): Promise<Note[]> {
         const request = new sql.Request()
         request.input('Query', sql.NVarChar, query)
         const result = await request.query(`
-            SELECT * FROM dbo.Notes WHERE SearchText LIKE '%' + @Query + '%' ORDER BY CreatedAt DESC
+            SELECT * 
+            FROM dbo.Notes 
+            WHERE SearchText LIKE '%' + @Query + '%'
+            ORDER BY [Title] ASC;
         `);
         return result.recordset;
     } catch (err) {
@@ -96,7 +103,8 @@ export async function filterNotes(query: string[]): Promise<Note[]> {
                 )
             ) = (
                 SELECT COUNT(*) FROM STRING_SPLIT(@Tags, ',')
-            );
+            )
+            ORDER BY [Title] ASC;
         `)
         return result.recordset;
     } catch (err) {
@@ -152,7 +160,9 @@ export async function deleteNote(id: string): Promise<boolean> {
         const request = new sql.Request()
         request.input('Id', sql.UniqueIdentifier, id)
         await request.query(`
-            DELETE FROM dbo.Notes WHERE Id = @Id
+            DELETE 
+            FROM dbo.Notes 
+            WHERE Id = @Id
         `);
         return true;
     } catch (err) {
