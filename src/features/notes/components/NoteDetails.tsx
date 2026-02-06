@@ -21,24 +21,24 @@ async function NoteDetails(props: NoteDetailsProps) {
             </section>
             <section class="d-flex flex-column justify-content-between">
                 <div>
-                    <div className="mb-3 text-center">
+                    <div class="mb-3 text-center">
                         <h3>
                             {note?.Title}
                         </h3>
-                        <div className="d-flex justify-content-evenly my-3 fs-3">
-                            <RatingStars rating={note!.Rating}/>
+                        <div class="my-3 fs-3">
+                            <rating-stars rating={note!.Rating}/>
                         </div>
-                        <blockquote className="my-3">
+                        <blockquote class="my-3">
                             {note!.Description}
                         </blockquote>
                     </div>
-                    <div className="mb-3 text-center">
+                    <div class="mb-3 text-center">
                         <a href={`https://duckduckgo.com/?q=${note!.Title}&ia=web`} target="_blank"
                            rel="noopener noreferrer">Find this item on the web</a>
                     </div>
-                    <div className="mb-3 text-center">
+                    <div class="mb-3 text-center">
                         {splitTags(note!.Tags).map(tag =>
-                            <span className="badge rounded-pill bg-primary m-1">{tag}</span>
+                            <span class="badge rounded-pill bg-primary m-1">{tag}</span>
                         )}
                     </div>
                 </div>

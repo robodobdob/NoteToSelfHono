@@ -1,4 +1,4 @@
-var dialog = document.getElementById('utilityModal');
+const dialog = document.getElementById('utilityModal');
 if (dialog) {
     dialog.addEventListener('close', () => {
         document.getElementById('utilityModal_content').innerHTML = '';
