@@ -5,10 +5,10 @@ interface RatingSelectorProps {
 function RatingSelector(props: RatingSelectorProps) {
     const { rating } = props;
     return (
-        <div hx-target:inherited="closest div" hx-swap:inherited="outerHTML" class="d-flex justify-content-between fs-3">
+        <div id="wrapper" hx-target:inherited="closest div" hx-swap:inherited="outerHTML">
             <input id="rating" type="hidden" name="Rating" value={rating} />
             {[1,2,3,4,5].map(i =>  
-                <span hx-get={`/ratingselector/${i}`} class={`pointer ${i <= rating ? "text-warning" : "text-secondary"}`}>★</span>
+                <span hx-get={`/notes/rating/${i}`} class={`pointer ${i <= rating ? "text-warning" : "text-secondary"}`}>★</span>
             )}
         </div>
     )

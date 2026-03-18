@@ -2,8 +2,9 @@ type Note = {
     Id: string
     Title: string
     Description: string
-    Tags: string
+    Tags: string[]
     Rating: number
+    IsPrivate: boolean
     StorageUrl: string | null
     FileName: string | null
     File?: Blob
@@ -17,15 +18,22 @@ type Tag = {
     Count: number;
 }
 
+type NotesSearchResult = {
+    Notes: Note[];
+    TotalNotesCount: number;
+}
+
 function toNote(body: any): Note {
+  const tagsRaw = String(body.Tags ?? '');
   return {
     Id: String(body.Id),
     Title: String(body.Title),
     Description: String(body.Description),
-    Tags: String(body.Tags),
+    Tags: tagsRaw.split(' ').map(t => t.trim()).filter(t => t.length > 0),
     Rating: Number(body.Rating),
+    IsPrivate: body.IsPrivate === 'true' || body.IsPrivate === true,
     StorageUrl: String(body.StorageUrl) ?? null,
-    FileName: String(body.File.name) ?? null,
+    FileName: (body.File && String(body.File.name)) ?? null,
     File: body.File ?? null
   }
 }
@@ -33,5 +41,6 @@ function toNote(body: any): Note {
 export {
     Note,
     Tag,
+    NotesSearchResult,
     toNote
 }
