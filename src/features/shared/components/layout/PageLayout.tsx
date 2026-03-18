@@ -13,7 +13,7 @@ function PageLayout(props: any){
                     <span class="controls">
                         <Working Id="mainLayout_spinner"/>
                         <button type="button" class="btn btn-warning" command="show-modal" commandfor="chatModal">
-                            <Icon name="message-circle" />
+                            <Icon name="message-circle" filled={false} />
                         </button>
                         <button type="button" class="btn btn-warning" command="show-modal" commandfor="utilityModal" hx-get="/notes/edit/00000000-0000-0000-0000-000000000000" hx-target="#utilityModal_content">
                             <Icon name="plus" />
