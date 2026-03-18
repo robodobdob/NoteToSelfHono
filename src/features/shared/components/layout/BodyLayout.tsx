@@ -19,7 +19,7 @@ function BodyLayout(props: any) {
         ${props.children}
         <script src="/static/js/htmx-4.0.0-alpha6.min.js" defer crossorigin="anonymous"></script>
         <script src="/static/js/hyperscript-0.9.14.min.js" defer></script>
-        <script src="/js/webComponents.js" defer></script>
+        <script src="/static/js/webComponents.js" defer></script>
         </body>
 
         </html>

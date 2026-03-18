@@ -44,6 +44,7 @@ async function EditNote(props: EditNoteProps)  {
                     <div class="mb-3">
                         <label htmlFor="rating" class="form-label">Rating</label>
                         <RatingSelector rating={note?.Rating!}/>
+                        <rating-selector rating={note?.Rating!}/>
                     </div>
                     <div class="mb-3">
                         <label htmlFor="description" class="form-label">Description</label>
