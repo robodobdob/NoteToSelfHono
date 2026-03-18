@@ -33,7 +33,7 @@ function toNote(body: any): Note {
     Rating: Number(body.Rating),
     IsPrivate: body.IsPrivate === 'true' || body.IsPrivate === true,
     StorageUrl: String(body.StorageUrl) ?? null,
-    FileName: String(body.File.name) ?? null,
+    FileName: (body.File && String(body.File.name)) ?? null,
     File: body.File ?? null
   }
 }

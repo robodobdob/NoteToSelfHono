@@ -6,7 +6,7 @@ import TagCloud from "../../../notes/components/TagCloud";
 function HomePage() {
     return (
         <PageLayout>
-            <article class="columns">
+            <article id="home-page" class="columns">
                 <section id="filters">
                     <SearchBox/>
                     <TagCloud/>

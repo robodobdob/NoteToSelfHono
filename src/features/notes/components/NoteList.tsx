@@ -29,22 +29,11 @@ async function NoteList(props: NoteListProps) {
         result = await getLatestNotesAsync();
     }
 
-    const showSearchBoxPartial = hxTriggerName === 'tag-form' || hxTriggerName === 'refresh-button' || hxTriggerName === 'notes-section';
-    const showTagCloudPartial = hxTriggerName === 'search-form' || hxTriggerName === 'refresh-button' || hxTriggerName === 'notes-section';
+    const showSearchBoxPartial = hxTriggerName === 'form#tag-form' || hxTriggerName === 'button#refresh-button' || hxTriggerName === 'section#notes-section';
+    const showTagCloudPartial = hxTriggerName === 'form#search-form' || hxTriggerName === 'button#refresh-button' || hxTriggerName === 'section#notes-section';
 
     return (
         <section id="notes-section" hx-trigger="notes-updated from:body" hx-get="/notes/list" hx-swap="outerHTML">
-            {showSearchBoxPartial &&
-                <hx-partial hx-target="#search-box" hx-swap="outerHTML">
-                    <SearchBox/>
-                </hx-partial>
-            }
-            {showTagCloudPartial &&
-                <hx-partial hx-target="#tag-cloud" hx-swap="outerHTML">
-                    <TagCloud/>
-                </hx-partial>
-            }
-
             <div class="list-title">
                 <div class="fw-bold text-uppercase">{getHeaderText(query, tags)}</div>
                 <button class="btn btn-sm btn-link p-0" id="refresh-button" hx-get="/notes/list" hx-target="#notes-list">
@@ -69,6 +58,17 @@ async function NoteList(props: NoteListProps) {
             <div class="note-count">
                 Showing {result.Notes.length} of {result.TotalNotesCount} notes
             </div>
+
+            {showSearchBoxPartial &&
+                <hx-partial hx-target="#search-box" hx-swap="outerHTML">
+                    <SearchBox/>
+                </hx-partial>
+            }
+            {showTagCloudPartial &&
+                <hx-partial hx-target="#tag-cloud" hx-swap="outerHTML">
+                    <TagCloud/>
+                </hx-partial>
+            }
         </section>
     )
 }

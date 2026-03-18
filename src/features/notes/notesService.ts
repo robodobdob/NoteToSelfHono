@@ -31,7 +31,7 @@ export async function saveNoteAsync(note: Note, file: Blob | null | undefined): 
     note.CreatedAt = new Date();
 
     // Upload file to Azure storage if provided
-    if (file!.size > 0) {
+    if (file && file!.size > 0) {
         // Try to get filename from File object, then note.FileName, otherwise use default
         const fileName = (file instanceof File && file.name) || note.FileName || 'file';
         const resized = await resizeImage(file!);

@@ -13,7 +13,7 @@ const GUID_EMPTY = "00000000-0000-0000-0000-000000000000";
 async function EditNote(props: EditNoteProps)  {
     const { noteId } = props
     let note: Note | null = {
-        Id: uuidv4(),
+        Id: GUID_EMPTY,
         Title: "",
         Description: "",
         Tags: [],

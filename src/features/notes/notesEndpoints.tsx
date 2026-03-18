@@ -9,16 +9,25 @@ import RatingSelector from './components/RatingSelector'
 
 const app = new Hono()
 
+const GUID_EMPTY = "00000000-0000-0000-0000-000000000000";
+
 app.get('/notes/list', async (c) => {
   const query = c.req.query('Query')
   const tags = c.req.queries('Tags')
   return c.html(
-      <NoteList query={query} tags={tags} hxTriggerName={c.req.header('HX-Trigger-Name')} />
+      <NoteList query={query} tags={tags} hxTriggerName={c.req.header('HX-Source')} />
   )
 })
 
 app.get('/notes/details/:id', async (c) => {
   const { id } = c.req.param();
+
+  if (id === GUID_EMPTY) {
+    c.res.headers.append('HX-Trigger', 'notes-updated, close-modal');
+    c.status(200);
+    return c.text('');
+  }
+
   return c.html(
       <NoteDetails id={id} />
   )
