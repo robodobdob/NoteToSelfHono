@@ -6,18 +6,17 @@ import TagCloud from "../../../notes/components/TagCloud";
 function HomePage() {
     return (
         <PageLayout>
-            
-            <section id="filters" hx-trigger="notes-updated from:body" hx-get="/reset?search=true&tags=true" hx-indicator="#mainLayout_spinner">
-                <SearchBox/>
-                <TagCloud/>        
-            </section>
-
-            <section id="notes-list" hx-trigger="notes-updated from:body" hx-get="/reset?list=true" hx-indicator="#mainLayout_spinner">
-                <NoteList/>
-            </section>
-
+            <article class="columns">
+                <section id="filters">
+                    <SearchBox/>
+                    <TagCloud/>
+                </section>
+                <section id="notes-list">
+                    <NoteList/>
+                </section>
+            </article>
         </PageLayout>
     );
 }
 
-export default HomePage; // Ensure default export
+export default HomePage;

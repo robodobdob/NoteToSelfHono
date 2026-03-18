@@ -1,63 +1,75 @@
-import Icon from "../../shared/components/Icon";
 import { Note } from "../../../models";
 import SearchBox from "./SearchBox";
 import TagCloud from "./TagCloud";
 import { tagsToList } from "../../shared/helpers";
 import { searchTagsAsync, getLatestNotesAsync, searchNotesAsync } from "../notesService";
 
-interface NotelistProps {
+interface NoteListProps {
     query?: string;
     tags?: string[];
+    hxTriggerName?: string;
 }
 
-function getHeaderText(query?: string, tags?: string[]): string{
+function getHeaderText(query?: string, tags?: string[]): string {
     if (query) return query;
     if (tags && tags.length > 0) return tagsToList(tags);
     return "Latest Edits";
 }
-async function NoteList(props: NotelistProps) {
-    const { query, tags } = props;
 
-    let notes: Note[];
+async function NoteList(props: NoteListProps) {
+    const { query, tags, hxTriggerName } = props;
+    const filterApplied = !!(query || (tags && tags.length > 0));
+
+    let result;
     if (query) {
-        notes = await searchNotesAsync(query);
+        result = await searchNotesAsync(query);
     } else if (tags && tags.length > 0) {
-        notes = await searchTagsAsync(tags);
+        result = await searchTagsAsync(tags);
     } else {
-        notes = await getLatestNotesAsync();
+        result = await getLatestNotesAsync();
     }
 
+    const showSearchBoxPartial = hxTriggerName === 'tag-form' || hxTriggerName === 'refresh-button' || hxTriggerName === 'notes-section';
+    const showTagCloudPartial = hxTriggerName === 'search-form' || hxTriggerName === 'refresh-button' || hxTriggerName === 'notes-section';
+
     return (
-        <>
-            {(tags && tags.length > 0) &&
+        <section id="notes-section" hx-trigger="notes-updated from:body" hx-get="/notes/list" hx-swap="outerHTML">
+            {showSearchBoxPartial &&
                 <hx-partial hx-target="#search-box" hx-swap="outerHTML">
                     <SearchBox/>
                 </hx-partial>
             }
-            {query &&
+            {showTagCloudPartial &&
                 <hx-partial hx-target="#tag-cloud" hx-swap="outerHTML">
                     <TagCloud/>
                 </hx-partial>
             }
 
-            <div class="d-flex justify-content-between align-items-center mb-3">
+            <div class="list-title">
                 <div class="fw-bold text-uppercase">{getHeaderText(query, tags)}</div>
-                <button class="btn btn-sm btn-link p-0" hx-get="/reset?search=true&tags=true&list=true" hx-indicator="#mainLayout_spinner">
-                    <Icon name={(query || tags) ? 'delete' : 'rotate-cw'} filled={false} size={16} />
+                <button class="btn btn-sm btn-link p-0" id="refresh-button" hx-get="/notes/list" hx-target="#notes-list">
+                    {filterApplied ? "Clear" : "Refresh"}
                 </button>
             </div>
 
             <div class="list-group shadow-sm" hx-target:inherited="#utilityModal_content">
-            {notes.map(note =>
-                <button type="button" command="show-modal" commandfor="utilityModal" hx-get={`/notedetails/${note.Id}`} class="list-group-item list-group-item-action note-list-item">
-                    <span class="text-start">{note.Title}</span>
-                    <span class="text-end text-nowrap ms-1 fs-6">
-                        <rating-stars rating={note.Rating}/>
-                    </span>
-                </button>
-            )}
+                {result.Notes.length > 0
+                    ? result.Notes.map(note =>
+                        <div class={`list-group-item list-group-item-action note-list-item ${note.IsPrivate ? "private-note" : ""}`}>
+                            <button command="show-modal" commandfor="utilityModal" hx-get={`/notes/details/${note.Id}`} class="btn">
+                                {note.Title}
+                            </button>
+                            <rating-stars rating={note.Rating}/>
+                        </div>
+                    )
+                    : <div class="list-group-item note-list-item">No notes found</div>
+                }
             </div>
-        </>
+
+            <div class="note-count">
+                Showing {result.Notes.length} of {result.TotalNotesCount} notes
+            </div>
+        </section>
     )
 }
 

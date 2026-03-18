@@ -1,17 +1,19 @@
-function tagsToSpaces(tags: string): string{
-    return tags.replace('|', ' ');
+/** Converts a pipe-delimited tag string from the database to a string array */
+function dbTagsToArray(tags: string): string[] {
+    return tags.split('|').map(t => t.trim()).filter(t => t.length > 0);
 }
 
-function spacesToTags(tags: string): string{
-    return tags.replace(' ', '|');
+/** Converts a string array of tags to a pipe-delimited string for database storage */
+function arrayToDbTags(tags: string[]): string {
+    return tags.join('|');
 }
 
-function tagsToList(tags: string[]){
+function tagsToList(tags: string[]): string {
     return tags.join(', ');
 }
 
 export {
-    tagsToSpaces,
-    spacesToTags,
+    dbTagsToArray,
+    arrayToDbTags,
     tagsToList
 }

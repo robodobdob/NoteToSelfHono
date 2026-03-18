@@ -4,34 +4,34 @@ import NoteDetails from './components/NoteDetails'
 import EditNote from './components/EditNote'
 import { Note, toNote } from '../../models'
 import { removeNoteAsync, saveNoteAsync } from './notesService'
-import Reset from './components/Reset'
+import Refresh from './components/Refresh'
 import RatingSelector from './components/RatingSelector'
 
 const app = new Hono()
 
-app.get('/notelist', async (c) => {
+app.get('/notes/list', async (c) => {
   const query = c.req.query('Query')
   const tags = c.req.queries('Tags')
   return c.html(
-      <NoteList query={query} tags={tags} />
+      <NoteList query={query} tags={tags} hxTriggerName={c.req.header('HX-Trigger-Name')} />
   )
 })
 
-app.get('/notedetails/:id', async (c) => {
+app.get('/notes/details/:id', async (c) => {
   const { id } = c.req.param();
   return c.html(
       <NoteDetails id={id} />
   )
 })
 
-app.get('/editnote/:id', async (c) => {
+app.get('/notes/edit/:id', async (c) => {
   const { id } = c.req.param()
   return c.html(
-    <EditNote noteId={id}  />
+    <EditNote noteId={id} />
   )
 })
 
-app.post('/editnote/:id', async (c) => {
+app.post('/notes/edit/:id', async (c) => {
   const body = await c.req.parseBody()
   const note: Note = toNote(body);
   await saveNoteAsync(note, note.File as Blob);
@@ -40,7 +40,7 @@ app.post('/editnote/:id', async (c) => {
   return c.text('');
 })
 
-app.delete('/deletenote/:id', async (c) => {
+app.delete('/notes/delete/:id', async (c) => {
   const { id } = c.req.param()
   await removeNoteAsync(id)
   c.res.headers.append('HX-Trigger', 'notes-updated, close-modal');
@@ -48,18 +48,15 @@ app.delete('/deletenote/:id', async (c) => {
   return c.text('');
 })
 
-app.get('/ratingselector/:rating', (c) => {
+app.get('/notes/rating/:rating', (c) => {
   const rating: number = Number(c.req.param('rating'))
   return c.html(
       <RatingSelector rating={rating}/>
   )
 })
 
-app.get('/reset', (c) => {
-  const { search, tags, list } = c.req.query();
-  return c.html(
-    <Reset search={search === 'true'} tags={tags === 'true'} list={list === 'true'} />
-  )
+app.get('/refresh', (c) => {
+  return c.html(<Refresh />)
 })
 
 export default app

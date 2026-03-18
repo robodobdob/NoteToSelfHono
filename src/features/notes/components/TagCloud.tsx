@@ -5,8 +5,8 @@ async function TagCloud() {
 
     return (
         <section id="tag-cloud">
-            <div class="fw-bold text-uppercase mb-3">Filter by tag</div>
-            <form class="d-flex justify-content-center flex-wrap gap-2" hx-get="/notelist"
+            <div id="label">Filter by tag</div>
+            <form id="tag-form" hx-get="/notes/list"
                   hx-indicator="#mainLayout_spinner" hx-target="#notes-list" hx-trigger="change">
                 {tags.map(tag =>
                     <span>
