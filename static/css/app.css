@@ -30,7 +30,7 @@ main {
     }
 }
 
-.top-row {
+nav {
     background-color: rgba(var(--bs-primary-rgb));
     color: rgba(var(--bs-light-rgb));
 
@@ -69,14 +69,10 @@ main {
     }
 }
 
-.page {
+main {
     position: relative;
     display: flex;
     flex-direction: column;
-}
-
-main {
-    flex: 1;
 }
 
 article#home-page {
