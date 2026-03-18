@@ -2,20 +2,7 @@ import * as sql from 'mssql';
 import { Note, NotesSearchResult, Tag } from '../models';
 import { dbTagsToArray } from '../features/shared/helpers';
 
-const config: sql.config = {
-    server: process.env.DB_SERVER!,
-    database: process.env.DB_NAME!,
-    connectionTimeout: 30000,
-    options: {
-        encrypt: true,
-        trustServerCertificate: false,
-        database: process.env.DB_NAME!
-    },
-    authentication: {
-        type: "azure-active-directory-default",
-        options: {},
-    },
-};
+const connectionString = process.env.DB_CONNECTION_STRING!;
 
 function mapRow(row: any): Note {
     return {
@@ -27,7 +14,7 @@ function mapRow(row: any): Note {
 
 export async function getLatestNotes(): Promise<NotesSearchResult> {
     try {
-        await sql.connect(config);
+        await sql.connect(connectionString);
         const request = new sql.Request();
         const result = await request.query(`
             SELECT TOP 12 *, (SELECT COUNT(*) FROM dbo.Notes) AS TotalCount
@@ -45,7 +32,7 @@ export async function getLatestNotes(): Promise<NotesSearchResult> {
 
 export async function getNote(id: string): Promise<Note | null> {
     try {
-        await sql.connect(config);
+        await sql.connect(connectionString);
 
         const request = new sql.Request();
         request.input('Id', sql.VarChar, id);
@@ -64,7 +51,7 @@ export async function getNote(id: string): Promise<Note | null> {
 
 export async function getTags(): Promise<Tag[] | []> {
     try {
-        await sql.connect(config);
+        await sql.connect(connectionString);
 
         const request = new sql.Request();
         const result = await request.query(`
@@ -83,7 +70,7 @@ export async function getTags(): Promise<Tag[] | []> {
 
 export async function searchNotes(query: string): Promise<NotesSearchResult> {
     try {
-        await sql.connect(config)
+        await sql.connect(connectionString)
         const request = new sql.Request()
         request.input('Query', sql.NVarChar, query)
         const result = await request.query(`
@@ -102,7 +89,7 @@ export async function searchNotes(query: string): Promise<NotesSearchResult> {
 
 export async function filterNotes(query: string[]): Promise<NotesSearchResult> {
     try {
-        await sql.connect(config)
+        await sql.connect(connectionString)
         const request = new sql.Request()
         request.input('Tags', sql.NVarChar, query.join(','))
         const result = await request.query(`
@@ -129,7 +116,7 @@ export async function filterNotes(query: string[]): Promise<NotesSearchResult> {
 
 export async function saveNote(note: Note): Promise<string> {
     try {
-        await sql.connect(config)
+        await sql.connect(connectionString)
         const request = new sql.Request()
         request.input("Id", sql.UniqueIdentifier, note.Id);
         request.input("Title", sql.NVarChar(200), note.Title);
@@ -172,7 +159,7 @@ export async function saveNote(note: Note): Promise<string> {
 
 export async function deleteNote(id: string): Promise<boolean> {
     try {
-        await sql.connect(config)
+        await sql.connect(connectionString)
         const request = new sql.Request()
         request.input('Id', sql.UniqueIdentifier, id)
         await request.query(`
