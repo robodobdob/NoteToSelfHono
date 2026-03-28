@@ -23,7 +23,7 @@ type NotesSearchResult = {
     TotalNotesCount: number;
 }
 
-function toNote(body: any): Note {
+function toNote(body: Record<string, unknown>): Note {
   const tagsRaw = String(body.Tags ?? '');
   return {
     Id: String(body.Id),
@@ -32,15 +32,11 @@ function toNote(body: any): Note {
     Tags: tagsRaw.split(' ').map(t => t.trim()).filter(t => t.length > 0),
     Rating: Number(body.Rating),
     IsPrivate: body.IsPrivate === 'true' || body.IsPrivate === true,
-    StorageUrl: String(body.StorageUrl) ?? null,
-    FileName: (body.File && String(body.File.name)) ?? null,
-    File: body.File ?? null
+    StorageUrl: body.StorageUrl != null ? String(body.StorageUrl) : null,
+    FileName: (body.File instanceof File && body.File.name) ? body.File.name : null,
+    File: body.File instanceof Blob ? body.File : undefined
   }
 }
 
-export {
-    Note,
-    Tag,
-    NotesSearchResult,
-    toNote
-}
+export type { Note, Tag, NotesSearchResult };
+export { toNote };

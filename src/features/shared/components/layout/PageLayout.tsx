@@ -3,8 +3,13 @@ import UtilityModal from "../UtilityModal";
 import Working from "../Working";
 import BodyLayout from "./BodyLayout";
 import ChatModal from "../../../chat/components/ChatModal";
+import type { Child } from 'hono/jsx';
 
-function PageLayout(props: any){
+interface PageLayoutProps {
+    children?: Child;
+}
+
+function PageLayout(props: PageLayoutProps){
     return (
         <BodyLayout>
             <main>
