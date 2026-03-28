@@ -1,4 +1,5 @@
 import { Hono } from 'hono'
+import type { Context, Next } from 'hono'
 import { getCookie, setCookie, deleteCookie } from 'hono/cookie'
 import Login from './components/Login'
 
@@ -38,7 +39,7 @@ app.post('/auth/logout', (c) => {
 })
 
 export function authMiddleware() {
-    return async (c: any, next: any) => {
+    return async (c: Context, next: Next) => {
         const session = getCookie(c, SESSION_COOKIE);
         if (session !== SESSION_VALUE) {
             return c.redirect('/login');

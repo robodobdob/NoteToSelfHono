@@ -1,8 +1,9 @@
 import { html } from "hono/html";
+import type { Child } from 'hono/jsx';
 
 interface BodyLayoutProps {
     title?: string;
-    children?: any;
+    children?: Child;
 }
 
 function BodyLayout(props: BodyLayoutProps) {

@@ -14,7 +14,7 @@ export async function getNoteByIdAsync(id: string): Promise<Note | null> {
     return await getNote(id);
 }
 
-export async function getAllTagsAsync(): Promise<Tag[] | []> {
+export async function getAllTagsAsync(): Promise<Tag[]> {
     return await getTags();
 }
 
@@ -31,14 +31,14 @@ export async function saveNoteAsync(note: Note, file: Blob | null | undefined): 
     note.CreatedAt = new Date();
 
     // Upload file to Azure storage if provided
-    if (file && file!.size > 0) {
+    if (file && file.size > 0) {
         // Try to get filename from File object, then note.FileName, otherwise use default
         const fileName = (file instanceof File && file.name) || note.FileName || 'file';
-        const resized = await resizeImage(file!);
+        const resized = await resizeImage(file);
         note.StorageUrl = await uploadFile(resized, note.Id, fileName);
         note.FileName = fileName;
-        if (file!.type) {
-            note.FileContentType = file!.type;
+        if (file.type) {
+            note.FileContentType = file.type;
         }
     } else {
         note.StorageUrl = null;

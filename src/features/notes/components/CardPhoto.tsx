@@ -1,6 +1,8 @@
+import type { Child } from 'hono/jsx';
+
 interface CardPhotoProps {
     storageUrl?: string | null;
-    children?: any;
+    children?: Child;
 }
 
 function CardPhoto(props: CardPhotoProps) {
