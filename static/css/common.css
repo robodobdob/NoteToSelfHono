@@ -11,18 +11,73 @@ body {
     background-color: var(--app-bg);
 }
 
-.page {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-}
-
 main {
-    flex: 1;
+    padding: 0 1.5rem;
+    padding-top: 1.1rem;
 }
 
-.content {
-    padding-top: 1.1rem;
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="search"],
+input[type="file"],
+label.form-control,
+textarea {
+    background-color: var(--app-surface-bg) !important;
+    color: var(--app-text) !important;
+
+    &:focus {
+        background-color: var(--app-surface-bg) !important;
+        color: var(--app-text) !important;
+    }
+
+    &::placeholder {
+        color: var(--app-text-muted) !important;
+    }
+}
+
+dialog {
+    display: flex;
+    opacity: 0;
+    pointer-events: none;
+    background-color: var(--app-card-bg);
+    color: var(--app-text);
+    width: 100%;
+
+    @media (min-width: 701px) {
+        max-width: 75%;
+    }
+
+    &[open] {
+        display: flex;
+        opacity: 1;
+        pointer-events: inherit;
+        flex-direction: column;
+        border: none !important;
+        border-radius: 6px;
+        box-shadow: 0 0 rgba(0, 0, 0, 0), 0 0 rgba(0, 0, 0, 0), 0 25px 50px -12px rgba(0, 0, 0, .25);
+    }
+
+    &::backdrop {
+        background: rgba(0, 0, 0, .25);
+    }
+
+    .btn-close {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+        background-color: var(--app-surface-bg);
+    }
+
+    .htmx-indicator {
+        position: absolute;
+        top: 0.5rem;
+        left: 0.5rem;
+    }
+
+    button.btn-close {
+        background-color: var(--bs-btn-bg);
+    }
 }
 
 .columns {
@@ -74,62 +129,11 @@ header {
     }
 }
 
-main {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-}
-
 footer {
     background-color: var(--app-footer-bg);
     margin-top: 1.5rem;
     display: flex;
     justify-content: space-between;
-}
-
-article#home-page {
-    padding: 0 1.5rem;
-    padding-top: 1.1rem;
-}
-
-#logout-form {
-    display: flex;
-    justify-content: center;
-    margin: 1rem 0;
-}
-
-dialog {
-    display: flex;
-    opacity: 0;
-    pointer-events: none;
-    background-color: rgba(var(--bs-light-rgb));
-
-    &[open] {
-        display: flex;
-        opacity: 1;
-        pointer-events: inherit;
-        flex-direction: column;
-        border: none !important;
-        border-radius: 12px;
-        box-shadow: 0 0 rgba(0, 0, 0, 0), 0 0 rgba(0, 0, 0, 0), 0 25px 50px -12px rgba(0, 0, 0, .25);
-    }
-
-    &::backdrop {
-        background: rgba(0, 0, 0, .25);
-    }
-
-    .btn-close {
-        position: absolute;
-        top: 0.5rem;
-        right: 0.5rem;
-        background-color: white;
-    }
-
-    .htmx-indicator {
-        position: absolute;
-        top: 0.5rem;
-        left: 0.5rem;
-    }
 }
 
 .pointer {

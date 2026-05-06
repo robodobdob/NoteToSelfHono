@@ -1,19 +1,13 @@
 import PageLayout from "../layout/PageLayout";
 import NoteList from "../../../notes/components/NoteList";
-import SearchBox from "../../../notes/components/SearchBox";
-import TagCloud from "../../../notes/components/TagCloud";
 
 function HomePage() {
     return (
         <PageLayout>
-            <article id="home-page" class="columns">
-                <section id="filters">
-                    <SearchBox/>
-                    <TagCloud/>
-                </section>
-                <section id="notes-list">
+            <article>
+                <div id="notes-list" hx-trigger="notes-updated from:body" hx-get="/notes/list">
                     <NoteList/>
-                </section>
+                </div>
             </article>
         </PageLayout>
     );

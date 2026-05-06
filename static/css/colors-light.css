@@ -1,0 +1,12 @@
+/* Light theme colour variables */
+:root {
+    --app-bg: #f8f9fa;
+    --app-card-bg: #ffffff;
+    --app-surface-bg: #ffffff;
+    --app-footer-bg: lightblue;
+    --app-text: #212529;
+    --app-text-muted: #6c757d;
+    --app-header-bg: rgba(var(--bs-primary-rgb));
+    --app-hover: 50%;
+    --app-primary: var(--bs-primary);
+}
