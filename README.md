@@ -75,18 +75,18 @@ bun install
 Create a `.env` file in the project root:
 
 ```env
-DB_CONNECTION_STRING=Server=your-server.database.windows.net;Database=your-db;...
-AZURE_STORAGE_CONNECTION_STRING=DefaultEndpointsProtocol=https;AccountName=...
-AUTH_PIN=1234
+ConnectionStrings__AZURE_SQL_CONNECTION_STRING=Server=your-server.database.windows.net;Database=your-db;...
+ConnectionStrings__AZURE_STORAGE_CONNECTION_STRING=DefaultEndpointsProtocol=https;AccountName=...
+PIN_CODE=1234
 PORT=3000
 NODE_ENV=development
 ```
 
 | Variable | Description |
 |---|---|
-| `DB_CONNECTION_STRING` | Full mssql connection string |
-| `AZURE_STORAGE_CONNECTION_STRING` | Azure Blob Storage connection string |
-| `AUTH_PIN` | PIN code required to log in |
+| `ConnectionStrings__AZURE_SQL_CONNECTION_STRING` | Full mssql connection string |
+| `ConnectionStrings__AZURE_STORAGE_CONNECTION_STRING` | Azure Blob Storage connection string |
+| `PIN_CODE` | PIN code required to log in |
 | `PORT` | Server port (default: `3000`) |
 | `NODE_ENV` | `production` enables secure cookies |
 
