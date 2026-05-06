@@ -1,7 +1,6 @@
 import { getAllTagsAsync } from "../../notes/notesService";
 
-
-async function TagCloud() {
+export default async function TagCloud() {
     const tags = await getAllTagsAsync();
 
     return (
@@ -22,5 +21,3 @@ async function TagCloud() {
         </section>
     )
 }
-
-export default TagCloud;

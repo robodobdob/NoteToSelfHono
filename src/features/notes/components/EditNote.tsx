@@ -10,7 +10,7 @@ interface EditNoteProps {
 
 const GUID_EMPTY = "00000000-0000-0000-0000-000000000000";
 
-async function EditNote(props: EditNoteProps)  {
+export default async function EditNote(props: EditNoteProps)  {
     const { noteId } = props
     let note: Note | null = {
         Id: GUID_EMPTY,
@@ -75,5 +75,3 @@ async function EditNote(props: EditNoteProps)  {
         </article>
     )
 }
-
-export default EditNote;

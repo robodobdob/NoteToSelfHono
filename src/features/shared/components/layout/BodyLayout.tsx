@@ -5,7 +5,7 @@ interface BodyLayoutProps {
     children?: any;
 }
 
-function BodyLayout(props: BodyLayoutProps) {
+export default function BodyLayout(props: BodyLayoutProps) {
     const title = props.title ?? 'Note To Self';
     return (html`
         <!DOCTYPE html>
@@ -40,5 +40,3 @@ function BodyLayout(props: BodyLayoutProps) {
         </html>
     `)
 }
-
-export default BodyLayout;

@@ -4,7 +4,7 @@ interface LoginProps {
     error?: string;
 }
 
-function Login(props: LoginProps) {
+export default function Login(props: LoginProps) {
     const { error } = props;
     return (
         <BodyLayout title="Note to self...">
@@ -26,5 +26,3 @@ function Login(props: LoginProps) {
         </BodyLayout>
     )
 }
-
-export default Login;

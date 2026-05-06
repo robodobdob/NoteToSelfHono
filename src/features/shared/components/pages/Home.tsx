@@ -1,7 +1,7 @@
 import PageLayout from "../layout/PageLayout";
 import NoteList from "../../../notes/components/NoteList";
 
-function HomePage() {
+export default function HomePage() {
     return (
         <PageLayout>
             <article>
@@ -12,5 +12,3 @@ function HomePage() {
         </PageLayout>
     );
 }
-
-export default HomePage;

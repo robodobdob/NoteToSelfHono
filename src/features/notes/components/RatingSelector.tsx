@@ -2,7 +2,7 @@ interface RatingSelectorProps {
     rating: number;
 }
 
-function RatingSelector(props: RatingSelectorProps) {
+export default function RatingSelector(props: RatingSelectorProps) {
     const { rating } = props;
     return (
         <div id="wrapper" hx-target:inherited="closest div" hx-swap:inherited="outerHTML">
@@ -13,5 +13,3 @@ function RatingSelector(props: RatingSelectorProps) {
         </div>
     )
 }
-
-export default RatingSelector;

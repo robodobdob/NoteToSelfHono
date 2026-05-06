@@ -5,7 +5,7 @@ type NoteDetailsProps = {
     id: string | null;
 }
 
-async function NoteDetails(props: NoteDetailsProps) {
+export default async function NoteDetails(props: NoteDetailsProps) {
     const { id } = props
     const note = await getNoteByIdAsync(id!)
     return (
@@ -48,5 +48,3 @@ async function NoteDetails(props: NoteDetailsProps) {
         </article>
     )
 }
-
-export default NoteDetails;

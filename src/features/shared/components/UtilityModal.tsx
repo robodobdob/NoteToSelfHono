@@ -1,6 +1,6 @@
 import Working from "./Working";
 
-function UtilityModal() {
+export default function UtilityModal() {
     return (
         <dialog id="utilityModal" hx-indicator:inherited="#utilityModal_spinner">
             <Working Id="utilityModal_spinner"/>
@@ -9,5 +9,3 @@ function UtilityModal() {
         </dialog>
     )
 }
-
-export default UtilityModal;
