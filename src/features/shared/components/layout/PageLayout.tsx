@@ -2,9 +2,9 @@ import Icon from "../Icon";
 import UtilityModal from "../UtilityModal";
 import Working from "../Working";
 import BodyLayout from "./BodyLayout";
-import ChatModal from "../../../chat/components/ChatModal";
+import SearchOptions from "../../../search/components/SearchOptions";
 
-function PageLayout(props: any){
+export default function PageLayout(props: any){
     return (
         <BodyLayout>
             <header>
@@ -37,8 +37,8 @@ function PageLayout(props: any){
 
             <UtilityModal/>
 
+            <SearchOptions/>
+
         </BodyLayout>
     )
 }
-
-export default PageLayout;

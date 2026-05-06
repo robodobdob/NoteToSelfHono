@@ -1,4 +1,4 @@
-import NoteList from "./NoteList";
+import NoteList from "../../notes/components/NoteList";
 import SearchBox from "./SearchBox";
 import TagCloud from "./TagCloud";
 
@@ -8,7 +8,7 @@ interface ResetProps {
   list?: boolean;
 }
 
-function Reset(props: ResetProps){
+export default function ResetFilters(props: ResetProps){
     const { search = false, tags = false, list = false } = props;
 
     return (
@@ -31,5 +31,3 @@ function Reset(props: ResetProps){
         </>
     )
 }
-
-export default Reset;

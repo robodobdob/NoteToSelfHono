@@ -1,4 +1,5 @@
-import { getAllTagsAsync } from "../notesService";
+import { getAllTagsAsync } from "../../notes/notesService";
+
 
 async function TagCloud() {
     const tags = await getAllTagsAsync();

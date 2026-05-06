@@ -1,6 +1,7 @@
+import SearchBox from "../../search/components/SearchBox";
+import TagCloud from "../../search/components/TagCloud";
 import NoteList from "./NoteList";
-import SearchBox from "./SearchBox";
-import TagCloud from "./TagCloud";
+
 
 function Refresh() {
     return (

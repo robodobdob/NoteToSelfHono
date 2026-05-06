@@ -1,4 +1,4 @@
-function SearchBox() {
+export default function SearchBox() {
     return (
         <section id="search-box">
             <div id="label">Search by text</div>
@@ -8,5 +8,3 @@ function SearchBox() {
         </section>
     )
 }
-
-export default SearchBox;
