@@ -3,29 +3,22 @@ import SearchBox from "./SearchBox";
 import TagCloud from "./TagCloud";
 
 interface ResetProps {
-  search?: boolean;
-  tags?: boolean;
-  list?: boolean;
+  trigger?: string;
 }
 
 export default function ResetFilters(props: ResetProps){
-    const { search = false, tags = false, list = false } = props;
+    const { trigger } = props;
 
     return (
         <>
-            {search && 
+            {trigger && ['form#tag-form', 'button#refresh-button', 'form#editNote', 'div#notes-list'].includes(trigger) &&
                 <hx-partial hx-target="#search-box" hx-swap="outerHTML">
                     <SearchBox/>
                 </hx-partial>
             }
-            {tags && 
+            {trigger && ['form#search-form', 'button#refresh-button', 'form#editNote', 'div#notes-list'].includes(trigger) &&
                 <hx-partial hx-target="#tag-cloud" hx-swap="outerHTML">
                     <TagCloud/>
-                </hx-partial>
-            }
-            {list && 
-                <hx-partial hx-target="#notes-list">
-                    <NoteList/>
                 </hx-partial>
             }
         </>

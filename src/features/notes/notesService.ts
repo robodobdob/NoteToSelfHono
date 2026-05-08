@@ -1,7 +1,6 @@
 import {Note, NotesSearchResult, Tag} from "../../models";
 import {deleteFile, uploadFile} from "../../infrastructure/storage";
 import {deleteNote, filterNotes, getLatestNotes, getNote, getTags, saveNote, searchNotes} from "../../infrastructure/database";
-import {arrayToDbTags} from "../shared/helpers";
 import sharp from "sharp";
 
 const SEARCH_TEXT_MAX_LENGTH: number = 450;

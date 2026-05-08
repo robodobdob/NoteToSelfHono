@@ -30,7 +30,7 @@ export default async function NoteList(props: NoteListProps) {
 
     return (
         <>
-            <ResetFilters/>
+            <ResetFilters trigger={hxTriggerName} />
 
             <div class="list-title">
                 <div class="fw-bold text-uppercase">{getHeaderText(query, tags)}</div>
@@ -53,7 +53,7 @@ export default async function NoteList(props: NoteListProps) {
                 }
             </div>
 
-            <div class="note-count">
+            <div id="note-count">
                 Showing {result.Notes.length} of {result.TotalNotesCount} notes
             </div>
         </>

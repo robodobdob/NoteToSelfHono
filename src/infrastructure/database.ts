@@ -2,7 +2,7 @@ import * as sql from 'mssql';
 import { Note, NotesSearchResult, Tag } from '../models';
 import { dbTagsToArray } from '../features/shared/helpers';
 
-const connectionString = process.env.ConnectionStrings__AZURE_SQL_CONNECTION_STRING!;
+const connectionString = process.env.ConnectionStrings__DatabaseConnection!;
 
 function mapRow(row: any): Note {
     return {
@@ -96,7 +96,7 @@ export async function saveNote(note: Note): Promise<string> {
         request.input("FileContentType", sql.NVarChar(50), note.FileContentType ?? null);
         request.input("SearchText", sql.NVarChar(1000), note.SearchText ?? null);
         const result = await request.execute<{ Id: string }>('dbo.SaveNote');
-        return result.recordset[0].Id;
+        return result.recordset[0]?.Id ?? "";
     } catch (err) {
         console.error("SQL error", err);
         return "";

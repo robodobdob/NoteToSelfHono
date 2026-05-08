@@ -28,6 +28,7 @@ export default function PageLayout(props: any){
 
             <footer>
                 {/* <ThemeSwitcher/> */}
+                <span>&nbsp;</span>
                 <form method="post" action="/auth/logout" id="logout-form">
                     <button type="submit" class="btn btn-link">
                         <Icon name="log-out"></Icon>

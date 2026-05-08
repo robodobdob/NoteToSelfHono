@@ -2,6 +2,7 @@ import { Note } from "../../../models";
 import { getNoteByIdAsync } from "../notesService";
 import RatingSelector from "./RatingSelector";
 import CardPhoto from "./CardPhoto";
+import Icon from "../../shared/components/Icon.tsx";
 
 interface EditNoteProps {
     noteId: string | null;
@@ -35,39 +36,45 @@ export default async function EditNote(props: EditNoteProps)  {
                 </CardPhoto>
             </section>
             <section class="d-flex flex-column justify-content-between">
-                <form name="editNote" id="editNote" hx-post={`/notes/edit/${note?.Id}`} hx-encoding='multipart/form-data' hx-include="#file">
+                <form name="editNote" id="editNote" hx-post={`/notes/edit/${note?.Id}`}
+                      hx-encoding='multipart/form-data' hx-include="#file">
                     <input type="hidden" name="Id" value={note?.Id}/>
-                    <div class="mb-3">
+                    <div className="mb-3">
                         <label htmlFor="title" class="form-label">Title</label>
-                        <input type="text" class="form-control shadow-sm" id="title" name="Title" value={note?.Title} required
+                        <input type="text" class="form-control shadow-sm" id="title" name="Title" value={note?.Title}
+                               required
                                maxLength={200} autofocus/>
                     </div>
-                    <div class="mb-3">
+                    <div className="mb-3">
                         <label htmlFor="rating" class="form-label">Rating</label>
                         <RatingSelector rating={note?.Rating!}/>
                     </div>
-                    <div class="mb-3">
+                    <div className="mb-3">
                         <label htmlFor="description" class="form-label">Description</label>
                         <textarea class="form-control shadow-sm" id="description" rows={3} maxLength={2000}
                                   name="Description">{note?.Description}</textarea>
                     </div>
-                    <div class="mb-3">
+                    <div className="mb-3">
                         <label htmlFor="tags" class="form-label">Tags</label>
                         <input type="text" class="form-control shadow-sm" id="tags" name="Tags" maxLength={50}
                                value={(note?.Tags ?? []).join(' ')} autoComplete="on" required/>
                     </div>
-                    <div class="input-group mb-3 shadow-sm">
-                        <div class="input-group-text">
+                    <div className="input-group mb-3 shadow-sm">
+                        <div className="input-group-text">
                             <input type="checkbox" class="form-check-input mt-0" id="isPrivate" name="IsPrivate"
-                                   value="true" checked={note?.IsPrivate === true} />
+                                   value="true" checked={note?.IsPrivate === true}/>
                         </div>
-                        <label class="form-control" htmlFor="isPrivate">Contains private or sensitive information</label>
+                        <label class="form-control" htmlFor="isPrivate">Contains private or sensitive
+                            information</label>
                     </div>
                 </form>
-                <div class="d-flex justify-content-evenly gap-1 w-100" hx-target:inherited="#utilityModal_content">
-                    <button type="submit" form="editNote" class="btn btn-primary shadow-sm w-25">Save</button>
-                    <button type="button" class="btn btn-secondary shadow-sm w-25" hx-get={`/notes/details/${note?.Id}`}
-                            hx-confirm="Are you sure you wish to cancel?">Cancel
+                <div className="d-flex justify-content-between gap-1 w-100">
+                    <button type="submit" form="editNote" className="btn btn-outline-primary shadow-sm">
+                        <Icon name="save"/>
+                    </button>
+                    <button className="btn btn-outline-danger shadow-sm" hx-delete={`/notes/delete/${note!.Id}`}
+                            hx-confirm="Are you sure you wish to delete this note?">
+                        <Icon name="trash-2"></Icon>
                     </button>
                 </div>
             </section>

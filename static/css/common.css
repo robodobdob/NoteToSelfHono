@@ -283,7 +283,7 @@ footer {
     filter: blur(4px);
 }
 
-.note-count {
+#note-count {
     text-align: center;
     margin-top: 1rem;
     font-size: 0.875rem !important;
