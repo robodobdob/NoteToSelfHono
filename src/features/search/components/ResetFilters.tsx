@@ -1,4 +1,3 @@
-import NoteList from "../../notes/components/NoteList";
 import SearchBox from "./SearchBox";
 import TagCloud from "./TagCloud";
 
