@@ -32,8 +32,8 @@ export function toNote(body: any): Note {
     Tags: tagsRaw.split(' ').map(t => t.trim()).filter(t => t.length > 0),
     Rating: Number(body.Rating),
     IsPrivate: body.IsPrivate === 'true' || body.IsPrivate === true,
-    StorageUrl: String(body.StorageUrl) ?? null,
-    FileName: (body.File && String(body.File.name)) ?? null,
-    File: body.File ?? null
+    StorageUrl: body.StorageUrl != null ? String(body.StorageUrl) : null,
+    FileName: (body.File instanceof File && body.File.name) ? body.File.name : null,
+    File: body.File instanceof Blob ? body.File : undefined
   }
 }

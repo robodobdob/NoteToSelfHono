@@ -4,11 +4,19 @@ import { dbTagsToArray } from '../features/shared/helpers';
 
 const connectionString = process.env.ConnectionStrings__DatabaseConnection!;
 
-function mapRow(row: any): Note {
+function mapRow(row: Record<string, unknown>): Note {
     return {
-        ...row,
-        Tags: dbTagsToArray(row.Tags ?? ''),
+        Id: row.Id as string,
+        Title: row.Title as string,
+        Description: row.Description as string,
+        Tags: dbTagsToArray((row.Tags as string) ?? ''),
+        Rating: row.Rating as number,
         IsPrivate: row.IsPrivate === true || row.IsPrivate === 1,
+        StorageUrl: (row.StorageUrl as string | null) ?? null,
+        FileName: (row.FileName as string | null) ?? null,
+        FileContentType: row.FileContentType as string | undefined,
+        SearchText: row.SearchText as string | undefined,
+        CreatedAt: row.CreatedAt as Date | null | undefined,
     };
 }
 
@@ -41,7 +49,7 @@ export async function getNote(id: string): Promise<Note | null> {
     }
 }
 
-export async function getTags(): Promise<Tag[] | []> {
+export async function getTags(): Promise<Tag[]> {
     try {
         await sql.connect(connectionString);
 
