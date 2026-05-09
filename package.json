@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "bun run --hot src/index.tsx",
-    "build": "bun build src/index.tsx --outdir dist --target bun && cp -r static dist/",
+    "build": "bun build src/index.tsx --outdir public --target bun && cp -r static public/",
     "start": "bun index.js"
   },
   "dependencies": {
