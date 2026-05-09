@@ -4,8 +4,8 @@ interface IconProps {
   size?: number;
 }
 
-function Icon(props: IconProps) {
-    const { name = "circle", filled = true, size = 24 } = props;
+export default function Icon(props: IconProps) {
+    const { name = "circle", filled = false, size = 24 } = props;
     return (
         <svg
             width={size}
@@ -21,5 +21,3 @@ function Icon(props: IconProps) {
         </svg>
     )
 }
-
-export default Icon;

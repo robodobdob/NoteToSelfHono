@@ -1,8 +1,9 @@
+import SearchBox from "../../search/components/SearchBox";
+import TagCloud from "../../search/components/TagCloud";
 import NoteList from "./NoteList";
-import SearchBox from "./SearchBox";
-import TagCloud from "./TagCloud";
 
-function Refresh() {
+
+export default function Refresh() {
     return (
         <>
             <hx-partial hx-target="#search-box" hx-swap="outerHTML">
@@ -17,5 +18,3 @@ function Refresh() {
         </>
     )
 }
-
-export default Refresh;

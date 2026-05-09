@@ -1,19 +1,13 @@
 /** Converts a pipe-delimited tag string from the database to a string array */
-function dbTagsToArray(tags: string): string[] {
+export function dbTagsToArray(tags: string): string[] {
     return tags.split('|').map(t => t.trim()).filter(t => t.length > 0);
 }
 
 /** Converts a string array of tags to a pipe-delimited string for database storage */
-function arrayToDbTags(tags: string[]): string {
+export function arrayToDbTags(tags: string[]): string {
     return tags.join('|');
 }
 
-function tagsToList(tags: string[]): string {
+export function tagsToList(tags: string[]): string {
     return tags.join(', ');
-}
-
-export {
-    dbTagsToArray,
-    arrayToDbTags,
-    tagsToList
 }

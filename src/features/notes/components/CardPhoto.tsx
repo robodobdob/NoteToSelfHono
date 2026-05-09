@@ -5,7 +5,7 @@ interface CardPhotoProps {
     children?: Child;
 }
 
-function CardPhoto(props: CardPhotoProps) {
+export default function CardPhoto(props: CardPhotoProps) {
     const { storageUrl, children } = props;
     const bgImage = storageUrl?.trim() ? storageUrl : '/static/img/missing.jpg';
     return (
@@ -14,5 +14,3 @@ function CardPhoto(props: CardPhotoProps) {
         </div>
     )
 }
-
-export default CardPhoto;

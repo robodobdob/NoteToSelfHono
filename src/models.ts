@@ -1,4 +1,4 @@
-type Note = {
+export type Note = {
     Id: string
     Title: string
     Description: string
@@ -13,17 +13,17 @@ type Note = {
     CreatedAt?: Date | null
 }
 
-type Tag = {
+export type Tag = {
     Name: string;
     Count: number;
 }
 
-type NotesSearchResult = {
+export type NotesSearchResult = {
     Notes: Note[];
     TotalNotesCount: number;
 }
 
-function toNote(body: Record<string, unknown>): Note {
+export function toNote(body: any): Note {
   const tagsRaw = String(body.Tags ?? '');
   return {
     Id: String(body.Id),
@@ -37,6 +37,3 @@ function toNote(body: Record<string, unknown>): Note {
     File: body.File instanceof Blob ? body.File : undefined
   }
 }
-
-export type { Note, Tag, NotesSearchResult };
-export { toNote };

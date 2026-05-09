@@ -16,7 +16,7 @@ app.get('/login', (c) => {
 app.post('/auth/login', async (c) => {
     const body = await c.req.parseBody();
     const pin = String(body.Pin ?? '');
-    const expectedPin = process.env.AUTH_PIN;
+    const expectedPin = process.env.PIN_CODE;
 
     if (!expectedPin || pin !== expectedPin) {
         return c.redirect('/login?error=Invalid+PIN');

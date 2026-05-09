@@ -1,0 +1,12 @@
+/* Dark theme colour variables */
+:root {
+    --app-bg: #1e1e2e;
+    --app-card-bg: #2a2a3e;
+    --app-surface-bg: #2a2a3e;
+    --app-footer-bg: #1a3a4a;
+    --app-text: #e0e0e0;
+    --app-text-muted: #a0a0b0;
+    --app-header-bg: #111111;
+    --app-hover: 50%;
+    --app-primary: var(--app-text);
+}
