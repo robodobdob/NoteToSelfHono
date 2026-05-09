@@ -1,3 +1,15 @@
 {
-    "bunVersion": "1.0"
-}
+    "bunVersion": "1.x",
+    "builds": [
+      {
+        "src": "src/index.tsx",
+        "use": "@vercel/node"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "src/index.tsx"
+      }
+    ]
+  }

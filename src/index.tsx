@@ -27,13 +27,13 @@ app.get('/', (c) => {
 app.route('/', notesEndpoints);
 app.route('/', chatEndpoints);
 
-const port = Number(process.env.PORT) || 3000;
+// const port = Number(process.env.PORT) || 3000;
 
-console.log("Starting server on port", port);
+// console.log("Starting server on port", port);
 
-Bun.serve({
-    port,
-    fetch: app.fetch,
-});
+// Bun.serve({
+//     port,
+//     fetch: app.fetch,
+// });
 
 export default app;
