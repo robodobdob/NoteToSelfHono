@@ -7,11 +7,11 @@ import { removeNoteAsync, saveNoteAsync } from './notesService'
 import Refresh from './components/Refresh'
 import RatingSelector from './components/RatingSelector'
 
-const app = new Hono()
+const notesEndpoints = new Hono()
 
 const GUID_EMPTY = "00000000-0000-0000-0000-000000000000";
 
-app.get('/notes/list', async (c) => {
+notesEndpoints.get('/notes/list', async (c) => {
   const query = c.req.query('Query')
   const tags = c.req.queries('Tags')
   return c.html(
@@ -19,7 +19,7 @@ app.get('/notes/list', async (c) => {
   )
 })
 
-app.get('/notes/details/:id', async (c) => {
+notesEndpoints.get('/notes/details/:id', async (c) => {
   const { id } = c.req.param();
 
   if (id === GUID_EMPTY) {
@@ -33,14 +33,14 @@ app.get('/notes/details/:id', async (c) => {
   )
 })
 
-app.get('/notes/edit/:id', async (c) => {
+notesEndpoints.get('/notes/edit/:id', async (c) => {
   const { id } = c.req.param()
   return c.html(
     <EditNote noteId={id} />
   )
 })
 
-app.post('/notes/edit/:id', async (c) => {
+notesEndpoints.post('/notes/edit/:id', async (c) => {
   const body = await c.req.parseBody()
   const note: Note = toNote(body);
   await saveNoteAsync(note, note.File as Blob);
@@ -49,7 +49,7 @@ app.post('/notes/edit/:id', async (c) => {
   return c.text('');
 })
 
-app.delete('/notes/delete/:id', async (c) => {
+notesEndpoints.delete('/notes/delete/:id', async (c) => {
   const { id } = c.req.param()
   await removeNoteAsync(id)
   c.res.headers.append('HX-Trigger', 'notes-updated, close-modal');
@@ -57,15 +57,15 @@ app.delete('/notes/delete/:id', async (c) => {
   return c.text('');
 })
 
-app.get('/notes/rating/:rating', (c) => {
+notesEndpoints.get('/notes/rating/:rating', (c) => {
   const rating: number = Number(c.req.param('rating'))
   return c.html(
       <RatingSelector rating={rating}/>
   )
 })
 
-app.get('/refresh', (c) => {
+notesEndpoints.get('/refresh', (c) => {
   return c.html(<Refresh />)
 })
 
-export default app
+export default notesEndpoints
