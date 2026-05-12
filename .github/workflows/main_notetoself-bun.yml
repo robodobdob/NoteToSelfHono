@@ -7,9 +7,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'Hono/**'
-  workflow_dispatch:
 
 jobs:
   build:
