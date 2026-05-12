@@ -1,7 +1,7 @@
 //import { DefaultAzureCredential, AzureCliCredential } from '@azure/identity';
 import { BlobServiceClient } from '@azure/storage-blob';
 
-const connectionString = process.env.ConnectionStrings__StorageConnection!;
+const connectionString = process.env.CUSTOMCONNSTR_StorageConnection!;
 const blobServiceClient = BlobServiceClient.fromConnectionString(connectionString);
 const containerClient = blobServiceClient.getContainerClient('notes');
 

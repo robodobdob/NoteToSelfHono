@@ -2,7 +2,7 @@ import * as sql from 'mssql';
 import { Note, NotesSearchResult, Tag } from '../models';
 import { dbTagsToArray } from '../features/shared/helpers';
 
-const connectionString = process.env.ConnectionStrings__DatabaseConnection!;
+const connectionString = process.env.SQLAZURECONNSTR_DatabaseConnection!;
 
 function mapRow(row: Record<string, unknown>): Note {
     return {
