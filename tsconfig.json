@@ -28,5 +28,8 @@
 
     "jsxImportSource": "hono/jsx",
     "allowSyntheticDefaultImports": true,
+    "types": [
+      "bun"
+    ]
   }
 }

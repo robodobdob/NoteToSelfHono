@@ -59,3 +59,5 @@ export default async function NoteList(props: NoteListProps) {
         </>
     )
 }
+
+export default NoteList;

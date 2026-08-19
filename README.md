@@ -70,31 +70,13 @@ cd NoteToSelfHono
 bun install
 ```
 
-### Configure Environment Variables
-
-Create a `.env` file in the project root:
-
-```env
-ConnectionStrings__AzureSql=Server=your-server.database.windows.net;Database=your-db;...
-ConnectionStrings__AzureStorage=DefaultEndpointsProtocol=https;AccountName=...
-PIN_CODE=1234
-PORT=3000
-NODE_ENV=development
-```
-
-| Variable | Description |
-|---|---|
-| `ConnectionStrings__AzureSql` | Full mssql connection string |
-| `ConnectionStrings__AzureStorage` | Azure Blob Storage connection string |
-| `PIN_CODE` | PIN code required to log in |
-| `PORT` | Server port (default: `3000`) |
-| `NODE_ENV` | `production` enables secure cookies |
-
 ### Run the Development Server
 
 ```bash
-bun run dev
+aspire run
 ```
+
+You will be asked to provaye values for the database connection, storage connection and a PIN code.
 
 Open [http://localhost:3000](http://localhost:3000). The server hot-reloads on file changes.
 

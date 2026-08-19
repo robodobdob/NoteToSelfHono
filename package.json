@@ -8,14 +8,16 @@
   },
   "dependencies": {
     "@azure/identity": "^4.13.1",
-    "@azure/storage-blob": "^12.31.0",
-    "hono": "4.12.16",
-    "mssql": "^12.5.2",
+    "@azure/storage-blob": "^12.33.0",
+    "hono": "4.11.7",
+    "mssql": "^12.7.0",
+    "react": "^19.2.8",
     "sharp": "^0.34.5",
     "uuid": "^13.0.2"
   },
   "devDependencies": {
     "@types/bun": "latest",
-    "@types/mssql": "^9.1.11"
+    "@types/mssql": "^9.1.11",
+    "@types/react": "^19.2.18"
   }
 }
