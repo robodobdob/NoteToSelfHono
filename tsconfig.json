@@ -27,9 +27,6 @@
     "noPropertyAccessFromIndexSignature": false,
 
     "jsxImportSource": "hono/jsx",
-    "allowSyntheticDefaultImports": true,
-    "types": [
-      "bun"
-    ]
+    "allowSyntheticDefaultImports": true
   }
 }
